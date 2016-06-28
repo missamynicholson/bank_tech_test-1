@@ -1,29 +1,58 @@
-# The Bank Tech Test
+#Bank Tech Test
 
->When in doubt, go for the simplest solution
+This is the repo for the Bank Tech Test taken during Week 12 of Makers Academy. The instructions for the test can be found [here] (https://github.com/makersacademy/bank_tech_test/blob/master/README.md)
 
-### Requirements
-* Deposits, withdrawal
-* Account statement (date, amount, balance)
-* Statement printing
-
-### Acceptance criteria
-
-**Given** a client makes a deposit of 1000 on 10-01-2012  
-**And** a deposit of 2000 on 13-01-2012  
-**And** a withdrawal of 500 on 14-01-2012  
-**When** she prints her bank statement  
-**Then** she would see  
-
+###User Stories
+The User Stories I have identified thus far are as follows:
 
 ```
-date || credit || debit || balance
-14/01/2012 || || 500.00 || 2500.00
-13/01/2012 || 2000.00 || || 3000.00
-10/01/2012 || 1000.00 || || 1000.00
+As a user
+So that I can spend my money
+I want to be able to withdraw money from my account
+
+As a user
+So that I can keep my money safe
+I want to be able to deposit money into my account
+
+As a user
+So that I have a record of each withdrawal
+I want to store the date and amount of each withdrawal
+
+As a user
+So that I have a record of each deposit
+I want to store the date and amount of each deposit
+
+As a user
+So that I can keep track of my money
+I want to be able to print a statement of my account
+
+
+
+Edge cases:
+As a user
+So that I don't get stung with hefty overdraft fees
+I only want to withdraw money that I have available in my account
+
+
+Additional user stories:
+As a user
+So that I can navigate my statement easily
+I want to be able to filter my statement by transaction type
+
+As a user
+So that I can navigate my statement easily
+I want to be able to filter my statement by date
+
+As a user
+So that I can read my statement easily
+I want to be able to see it in a graphical interface
 ```
 
-### Additional extensions
+###Installation instructions
 
-* Statement filters (just deposits, withdrawals, date ascending, date descending)
-* Graphical interface
+```
+$ git clone https://github.com/missamynicholson/bank_tech_test-1.git
+$ bundle
+
+To run tests:
+$ rspec
