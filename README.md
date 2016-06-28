@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/missamynicholson/bank_tech_test-1.svg?branch=master)](https://travis-ci.org/missamynicholson/bank_tech_test-1)
+
+[![Coverage Status](https://coveralls.io/repos/github/missamynicholson/bank_tech_test-1/badge.svg?branch=master)](https://coveralls.io/github/missamynicholson/bank_tech_test-1?branch=master)
+
+
 #Bank Tech Test
 
 This is the repo for the Bank Tech Test taken during Week 12 of Makers Academy. The instructions for the test can be found [here] (https://github.com/makersacademy/bank_tech_test/blob/master/README.md)

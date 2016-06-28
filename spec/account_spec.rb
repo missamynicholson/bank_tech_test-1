@@ -20,6 +20,7 @@ describe Account do
     it "decreases balance by amount withdrawn" do
       expect{ account.withdraw(TRANSACTION_AMOUNT) }.to change{ account.balance }.from(0).to(-TRANSACTION_AMOUNT)
     end
+
   end
 
   describe "#deposit" do
