@@ -11,6 +11,8 @@ class Statement
     " #{format_balance(calculate_balance(starting_balance, deposit, withdrawal))}"
   end
 
+  private
+
   def format_amount(amount)
     amount == 0 ? "" : sprintf('%.2f', amount)
   end

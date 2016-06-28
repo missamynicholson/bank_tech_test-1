@@ -8,16 +8,23 @@ class Account
   end
 
   def withdraw(amount)
-    transaction = Transaction.new(date: Date.today, deposit: 0, withdrawal: amount, starting_balance: get_balance)
+    transaction = create_transaction(0, amount)
     @transactions << transaction
     statement.printout(transaction)
   end
 
   def deposit(amount)
-    transaction = Transaction.new(date: Date.today, deposit: amount, withdrawal: 0, starting_balance: get_balance)
+    transaction = create_transaction(amount, 0)
     @transactions << transaction
     statement.printout(transaction)
   end
+
+  private
+
+  def create_transaction(deposit_amount, withdrawal_amount)
+    Transaction.new(date: Date.today, deposit: deposit_amount, withdrawal: withdrawal_amount, starting_balance: get_balance)
+  end
+
 
   def get_balance
     transactions.count > 0 ? get_ending_balance : 0
