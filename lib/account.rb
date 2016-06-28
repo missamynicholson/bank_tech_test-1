@@ -19,6 +19,10 @@ class Account
     statement.printout(transaction)
   end
 
+  def summary
+    statement.printout_summary(transactions)
+  end
+
   private
 
   def create_transaction(deposit_amount, withdrawal_amount)

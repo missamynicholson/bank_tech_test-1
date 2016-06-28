@@ -11,6 +11,14 @@ class Statement
     " #{format_balance(calculate_balance(starting_balance, deposit, withdrawal))}"
   end
 
+  def printout_summary(transactions)
+    summary_string = ""
+    transactions.reverse.each do |transaction|
+      summary_string << printout(transaction) + "\n"
+    end
+    summary_string
+  end
+
   private
 
   def format_amount(amount)

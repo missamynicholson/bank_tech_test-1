@@ -45,4 +45,11 @@ describe Account do
     end
   end
 
+  describe "#summary" do
+    it "prints a summary of all previous transactions" do
+      allow(statement).to receive(:printout_summary).and_return :summary_printout
+      expect(account.summary).to eq :summary_printout
+    end
+  end
+
 end
