@@ -4,12 +4,12 @@ describe Transaction do
   TRANSACTION_AMOUNT = 100
 
   subject(:transaction) do
-    described_class.new(date: 2016-06-28, amount: TRANSACTION_AMOUNT, type: "deposit")
+    described_class.new(date: Date.new, amount: TRANSACTION_AMOUNT, type: "deposit")
   end
 
   describe '#date' do
     it 'returns date of transaction' do
-      expect(transaction.date).to eq 2016-06-28
+      expect(transaction.date).to eq Date.new
     end
   end
 
