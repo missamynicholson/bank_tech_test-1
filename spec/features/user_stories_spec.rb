@@ -2,7 +2,6 @@ require "account"
 
 describe "User Stories" do
 
-  # User Story 1
   # As a user
   # So that I can spend my money
   # I want to be able to withdraw money from my account
