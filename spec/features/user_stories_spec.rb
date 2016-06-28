@@ -27,9 +27,10 @@ describe "User Stories" do
   it "so I have a record of each withdrawal I want to store the date and amount" do
     account = Account.new
     account.deposit(1000)
-    date_today_formatted = Date.new.strftime("%d/%m/%Y")
-    transaction_printout = "#{date_today_formatted} ||  || 1000.00 || 0.00"
-    expect(account.withdraw(1000)).to eq transaction_printout
+    account.deposit(2000)
+    allow(Date).to receive(:today).and_return Date.new(2012,1,14)
+    transaction_printout = "14/01/2012 ||  || 500.00 || 2500.00"
+    expect(account.withdraw(500)).to eq transaction_printout
   end
 
   # As a user
@@ -38,8 +39,8 @@ describe "User Stories" do
 
   it "so I have a record of each deposit I want to store the date and amount" do
     account = Account.new
-    date_today_formatted = Date.new.strftime("%d/%m/%Y")
-    transaction_printout = "#{date_today_formatted} || 1000.00 ||  || 1000.00"
+    allow(Date).to receive(:today).and_return Date.new(2012,1,10)
+    transaction_printout = "10/01/2012 || 1000.00 ||  || 1000.00"
     expect(account.deposit(1000)).to eq transaction_printout
   end
 

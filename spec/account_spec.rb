@@ -2,17 +2,13 @@ require "account"
 
 describe Account do
 
-  TRANSACTION_AMOUNT = 100
+  TRANSACTION_AMOUNT = 1000
 
   subject(:account) { described_class.new(statement: statement) }
 
   let(:statement) { double :statement }
 
   describe "#initialization" do
-    it "has a balance of zero upon initialisation" do
-      expect(account.balance).to eq Account::STARTING_BALANCE
-    end
-
     it "has no transactions upon initialisation" do
       expect(account.transactions).to eq []
     end
@@ -27,10 +23,6 @@ describe Account do
       expect(account).to respond_to(:withdraw).with(1).argument
     end
 
-    it "decreases balance by amount withdrawn" do
-      expect{ account.withdraw(TRANSACTION_AMOUNT) }.to change{ account.balance }.from(0).to(-TRANSACTION_AMOUNT)
-    end
-
     it "adds a transaction into the transactions array" do
       expect{ account.withdraw(TRANSACTION_AMOUNT) }.to change{ account.transactions.count }.from(0).to(1)
     end
@@ -42,7 +34,7 @@ describe Account do
     end
 
     it "returns a printout of the withdrawal" do
-      transaction_printout = "14/01/2012 || || 1000.00 || 1000.00"
+      transaction_printout = "14/01/2012 || || 500.00 || 2500.00"
       allow(statement).to receive(:printout).and_return transaction_printout
       expect(account.withdraw(TRANSACTION_AMOUNT)).to eq transaction_printout
     end
@@ -58,10 +50,6 @@ describe Account do
       expect(account).to respond_to(:deposit).with(1).argument
     end
 
-    it "increases balance by amount deposited" do
-      expect{ account.deposit(TRANSACTION_AMOUNT) }.to change{ account.balance }.from(0).to(TRANSACTION_AMOUNT)
-    end
-
     it "adds a transaction into the transactions array" do
       expect{ account.deposit(TRANSACTION_AMOUNT) }.to change{ account.transactions.count }.from(0).to(1)
     end
@@ -73,9 +61,28 @@ describe Account do
     end
 
     it "returns a printout of the deposit" do
-      transaction_printout = "14/01/2012 || 1000.00 ||  || 1000.00"
+      transaction_printout = "10/01/2012 || 1000.00 ||  || 1000.00"
       allow(statement).to receive(:printout).and_return transaction_printout
       expect(account.withdraw(TRANSACTION_AMOUNT)).to eq transaction_printout
+    end
+  end
+
+  describe "#get_balance" do
+    context "where there are previous transactions" do
+      let(:transaction_in) do
+        double(:transaction_in, date: nil, deposit: TRANSACTION_AMOUNT,
+                            withdrawal: 0, starting_balance: 0)
+      end
+      it "returns the current balance" do
+        allow(account).to receive(:transactions).and_return [transaction_in]
+        expect(account.get_balance).to eq 1000
+      end
+    end
+
+    context "where there are no previous transactions" do
+      it "returns zero" do
+        expect(account.get_balance).to eq 0
+      end
     end
   end
 

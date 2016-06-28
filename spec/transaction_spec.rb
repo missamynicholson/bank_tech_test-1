@@ -1,21 +1,23 @@
 require 'transaction'
 
 describe Transaction do
-  TRANSACTION_AMOUNT = 100
+  DEPOSIT_AMOUNT = 2000
+  STARTING_BALANCE = 1000
 
   subject(:transaction) do
-    described_class.new(date: Date.new, deposit: TRANSACTION_AMOUNT, withdrawal: 0, starting_balance: 1000)
+    described_class.new(date: Date.new(2012,1,10), deposit: DEPOSIT_AMOUNT,
+                        withdrawal: 0, starting_balance: STARTING_BALANCE)
   end
 
   describe '#date' do
     it 'returns date of transaction' do
-      expect(transaction.date).to eq Date.new
+      expect(transaction.date).to eq Date.new(2012,1,10)
     end
   end
 
   describe '#deposit' do
     it 'returns deposit amount of transaction' do
-      expect(transaction.deposit).to eq TRANSACTION_AMOUNT
+      expect(transaction.deposit).to eq DEPOSIT_AMOUNT
     end
   end
 
@@ -27,7 +29,7 @@ describe Transaction do
 
   describe '#starting balance' do
     it 'returns starting balance of transaction' do
-      expect(transaction.starting_balance).to eq 1000
+      expect(transaction.starting_balance).to eq STARTING_BALANCE
     end
   end
 end
