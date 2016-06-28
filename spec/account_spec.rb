@@ -4,7 +4,9 @@ describe Account do
 
   TRANSACTION_AMOUNT = 100
 
-  subject(:account) { described_class.new }
+  subject(:account) { described_class.new(statement: statement) }
+
+  let(:statement) { double :statement }
 
   describe "#initialization" do
     it "has a balance of zero upon initialisation" do
@@ -17,6 +19,10 @@ describe Account do
   end
 
   describe "#withdraw" do
+    before do
+      allow(statement).to receive(:printout).and_return "printout"
+    end
+
     it "can withdraw money" do
       expect(account).to respond_to(:withdraw).with(1).argument
     end
@@ -35,13 +41,19 @@ describe Account do
       expect(account.transactions).to include(:transaction_out)
     end
 
-    it "returns the current balance" do
-      expect(account.withdraw(TRANSACTION_AMOUNT)).to eq(Account::STARTING_BALANCE - TRANSACTION_AMOUNT)
+    it "returns a printout of the withdrawal" do
+      transaction_printout = "14/01/2012 || || 1000.00 || 1000.00"
+      allow(statement).to receive(:printout).and_return transaction_printout
+      expect(account.withdraw(TRANSACTION_AMOUNT)).to eq transaction_printout
     end
 
   end
 
   describe "#deposit" do
+    before do
+      allow(statement).to receive(:printout).and_return "printout"
+    end
+
     it "can deposit money" do
       expect(account).to respond_to(:deposit).with(1).argument
     end
@@ -60,8 +72,10 @@ describe Account do
       expect(account.transactions).to include(:transaction_in)
     end
 
-    it "returns the current balance" do
-      expect(account.deposit(TRANSACTION_AMOUNT)).to eq(Account::STARTING_BALANCE + TRANSACTION_AMOUNT)
+    it "returns a printout of the deposit" do
+      transaction_printout = "14/01/2012 || 1000.00 ||  || 1000.00"
+      allow(statement).to receive(:printout).and_return transaction_printout
+      expect(account.withdraw(TRANSACTION_AMOUNT)).to eq transaction_printout
     end
   end
 

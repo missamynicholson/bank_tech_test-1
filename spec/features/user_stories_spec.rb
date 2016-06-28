@@ -20,4 +20,27 @@ describe "User Stories" do
     expect { account.deposit(1000) }.not_to raise_error
   end
 
+  # As a user
+  # So that I have a record of each withdrawal
+  # I want to store the date and amount of each withdrawal
+
+  it "so I have a record of each withdrawal I want to store the date and amount" do
+    account = Account.new
+    account.deposit(1000)
+    date_today_formatted = Date.new.strftime("%d/%m/%Y")
+    transaction_printout = "#{date_today_formatted} ||  || 1000.00 || 0.00"
+    expect(account.withdraw(1000)).to eq transaction_printout
+  end
+
+  # As a user
+  # So that I have a record of each deposit
+  # I want to store the date and amount of each deposit
+
+  it "so I have a record of each deposit I want to store the date and amount" do
+    account = Account.new
+    date_today_formatted = Date.new.strftime("%d/%m/%Y")
+    transaction_printout = "#{date_today_formatted} || 1000.00 ||  || 1000.00"
+    expect(account.deposit(1000)).to eq transaction_printout
+  end
+
 end
