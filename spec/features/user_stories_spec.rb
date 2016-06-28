@@ -12,4 +12,13 @@ describe "User Stories" do
     expect { account.withdraw(500) }.not_to raise_error
   end
 
+  # As a user
+  # So that I can keep my money safe
+  # I want to be able to deposit money into my account
+
+  it "so I can keep my money safe I want to deposit money into my account" do
+    account = Account.new
+    expect { account.deposit(1000) }.not_to raise_error
+  end
+
 end
